@@ -1,0 +1,315 @@
+﻿@page "/Navmenu"
+@inject NavigationManager navigation;
+@*@using BlazorNgani.Components.Layout
+@using Data
+@inject ApplicationDbContext _db;
+@using Models*@
+<div data-theme="light">
+
+
+
+
+    <div class="top-row ps-3   navbar " style=" border-bottom:solid 1px rgba(0,0,0,0.2); background-color:var(	--color-base-200);">
+        <div class="container-fluid ">
+            <a class=" font-bold base-content  items-center italic  text-xl flex-row flex" href="">
+                <svg class="w-[35px] h-[35px] text-error" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M9 6c0-1.65685 1.3431-3 3-3s3 1.34315 3 3-1.3431 3-3 3-3-1.34315-3-3Zm2 3.62992c-.1263-.04413-.25-.08799-.3721-.13131-1.33928-.47482-2.49256-.88372-4.77995-.8482C4.84875 8.66593 4 9.46413 4 10.5v7.2884c0 1.0878.91948 1.8747 1.92888 1.8616 1.283-.0168 2.04625.1322 2.79671.3587.29285.0883.57733.1863.90372.2987l.00249.0008c.11983.0413.24534.0845.379.1299.2989.1015.6242.2088.9892.3185V9.62992Zm2-.00374V20.7551c.5531-.1678 1.0379-.3374 1.4545-.4832.2956-.1034.5575-.1951.7846-.2653.7257-.2245 1.4655-.3734 2.7479-.3566.5019.0065.9806-.1791 1.3407-.4788.3618-.3011.6723-.781.6723-1.3828V10.5c0-.58114-.2923-1.05022-.6377-1.3503-.3441-.29904-.8047-.49168-1.2944-.49929-2.2667-.0352-3.386.36906-4.6847.83812-.1256.04539-.253.09138-.3832.13765Z" />
+                </svg>
+
+                Lost Library
+            </a>
+        </div>
+    </div>
+
+    <input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+    <div class="nav-scrollable bg-base-200	neutral-content" style=" border-bottom:solid 1px rgba(0,0,0,0.2); border-right:solid 1px var(--color-neutral)" onclick="document.querySelector('.navbar-toggler').click()">
+        <nav class="nav flex-column ">
+
+            <ul class="menu 	neutral-content h-60 rounded-box w-full mt-1">
+                <li>
+                    <a class=" text-md 	text-neutral font-semilight" style="border: solid 1px rgba(0,0,0,0.2)">
+                        <svg class="w-[27px] h-[27px] text-base-content" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M12 20a7.966 7.966 0 0 1-5.002-1.756l.002.001v-.683c0-1.794 1.492-3.25 3.333-3.25h3.334c1.84 0 3.333 1.456 3.333 3.25v.683A7.966 7.966 0 0 1 12 20ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10c0 5.5-4.44 9.963-9.932 10h-.138C6.438 21.962 2 17.5 2 12Zm10-5c-1.84 0-3.333 1.455-3.333 3.25S10.159 13.5 12 13.5c1.84 0 3.333-1.455 3.333-3.25S13.841 7 12 7Z" clip-rule="evenodd" />
+                        </svg>
+                        My Profile
+                    </a>
+                </li>
+                <li>
+                    <NavLink href="AddToCart" class="text-md border text-neutral font-semilight" style="border: solid 1px rgba(0,0,0,0.2)">
+                        <svg class="[27px] h-[27px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="m12.75 20.66 6.184-7.098c2.677-2.884 2.559-6.506.754-8.705-.898-1.095-2.206-1.816-3.72-1.855-1.293-.034-2.652.43-3.963 1.442-1.315-1.012-2.678-1.476-3.973-1.442-1.515.04-2.825.76-3.724 1.855-1.806 2.201-1.915 5.823.772 8.706l6.183 7.097c.19.216.46.34.743.34a.985.985 0 0 0 .743-.34Z" />
+                        </svg>
+
+                        My Wishlist
+                    </NavLink>
+
+                </li>
+
+                <li>
+                    <a class=" text-md border text-neutral font-semilight" style="border: solid 1px rgba(0,0,0,0.2)">
+                        <svg class="w-[27px] h-[27px] " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M9 2a1 1 0 0 0-1 1H6a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2a1 1 0 0 0-1-1H9Zm1 2h4v2h1a1 1 0 1 1 0 2H9a1 1 0 0 1 0-2h1V4Zm5.707 8.707a1 1 0 0 0-1.414-1.414L11 14.586l-1.293-1.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4Z" clip-rule="evenodd" />
+                        </svg>
+                        My Orders
+                    </a>
+                </li>
+
+                <li>
+                    <a class="text-neurtal text-md border font-semilight" style="border: solid 1px rgba(0,0,0,0.2)">
+                        <svg class="w-[27px] h-[27px] " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M4 4a1 1 0 0 1 1-1h1.5a1 1 0 0 1 .979.796L7.939 6H19a1 1 0 0 1 .979 1.204l-1.25 6a1 1 0 0 1-.979.796H9.605l.208 1H17a3 3 0 1 1-2.83 2h-2.34a3 3 0 1 1-4.009-1.76L5.686 5H5a1 1 0 0 1-1-1Z" clip-rule="evenodd" />
+                        </svg>
+
+
+                        Shopping Cart
+                    </a>
+                </li>
+                <li>
+                    <!--   <button class="btn" onclick="my_modal_4.showModal()">
+                    <svg class="w-[27px] h-[27px] text-secondary-content" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd" />
+                    </svg>
+
+                    Admin
+                    </button>-->
+
+                    <NavLink href="AdminHome" class=" border justify-start text-md font-semilight  text-nuetral" style="border: solid 1px rgba(0,0,0,0.2)">
+                        <svg class="w-[27px] h-[27px] " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd" />
+                        </svg>
+
+                        Start Selling
+                    </NavLink>
+                </li>
+            </ul>
+            <div class=" " style="margin-top:-2rem;">
+                <ul class="menu bg-base-200 rounded-box w-full border-0" style="border-radius:0;background-color:rgb(247, 245, 243)">
+                    <li>
+                        <h2 class="menu-title text-error">My Reading Corner</h2>
+                        <ul class="text-info-content font-semibold">
+                            <li><a>My Book</a></li>
+                            <li><a>Continue Reading</a></li>
+                            <li><a>Completed Books</a></li>
+                            <li><a>My Reviews</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <ul class="menu menu-md bg-base-200 rounded-box w-full" style="border-radius:0;background-color:rgb(247, 245, 243)">
+                <li class=" font-semibold text-md text-base-content ">
+                    <a>
+                        <svg class=" w-[24px] h-[24px] " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M3 4a1 1 0 0 0-.822 1.57L6.632 12l-4.454 6.43A1 1 0 0 0 3 20h13.153a1 1 0 0 0 .822-.43l4.847-7a1 1 0 0 0 0-1.14l-4.847-7a1 1 0 0 0-.822-.43H3Z" clip-rule="evenodd" />
+                        </svg>
+                        Coming Soon
+                    </a>
+                </li>
+                <li class="font-semibold text-md text-base-content">
+                    <a>
+                        <svg class=" w-[24px] h-[24px] " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M11 9a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z" />
+                            <path fill-rule="evenodd" d="M9.896 3.051a2.681 2.681 0 0 1 4.208 0c.147.186.38.282.615.255a2.681 2.681 0 0 1 2.976 2.975.681.681 0 0 0 .254.615 2.681 2.681 0 0 1 0 4.208.682.682 0 0 0-.254.615 2.681 2.681 0 0 1-2.976 2.976.681.681 0 0 0-.615.254 2.682 2.682 0 0 1-4.208 0 .681.681 0 0 0-.614-.255 2.681 2.681 0 0 1-2.976-2.975.681.681 0 0 0-.255-.615 2.681 2.681 0 0 1 0-4.208.681.681 0 0 0 .255-.615 2.681 2.681 0 0 1 2.976-2.975.681.681 0 0 0 .614-.255ZM12 6a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" clip-rule="evenodd" />
+                            <path d="M5.395 15.055 4.07 19a1 1 0 0 0 1.264 1.267l1.95-.65 1.144 1.707A1 1 0 0 0 10.2 21.1l1.12-3.18a4.641 4.641 0 0 1-2.515-1.208 4.667 4.667 0 0 1-3.411-1.656Zm7.269 2.867 1.12 3.177a1 1 0 0 0 1.773.224l1.144-1.707 1.95.65A1 1 0 0 0 19.915 19l-1.32-3.93a4.667 4.667 0 0 1-3.4 1.642 4.643 4.643 0 0 1-2.53 1.21Z" />
+                        </svg>
+                        Top Rated
+                    </a>
+                </li>
+                <li class="font-semibold text-md text-base-content">
+                    <a>
+                        <svg class=" w-[24px] h-[24px] " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M18.458 3.11A1 1 0 0 1 19 4v16a1 1 0 0 1-1.581.814L12 16.944V7.056l5.419-3.87a1 1 0 0 1 1.039-.076ZM22 12c0 1.48-.804 2.773-2 3.465v-6.93c1.196.692 2 1.984 2 3.465ZM10 8H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6V8Zm0 9H5v3a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-3Z" clip-rule="evenodd" />
+                        </svg>
+                        New Releases
+                    </a>
+                </li>
+                <li class="font-semibold text-md text-base-content">
+                    <a>
+                        <svg class=" w-[24px] h-[24px] " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm9.008-3.018a1.502 1.502 0 0 1 2.522 1.159v.024a1.44 1.44 0 0 1-1.493 1.418 1 1 0 0 0-1.037.999V14a1 1 0 1 0 2 0v-.539a3.44 3.44 0 0 0 2.529-3.256 3.502 3.502 0 0 0-7-.255 1 1 0 0 0 2 .076c.014-.398.187-.774.48-1.044Zm.982 7.026a1 1 0 1 0 0 2H12a1 1 0 1 0 0-2h-.01Z" clip-rule="evenodd" />
+                        </svg>
+                        Help & Support
+                    </a>
+                </li>
+                <li class="my-2">
+
+                    <button class="btn bg-white text-black border-[#e5e5e5]">
+                        <svg aria-label="Google logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g><path d="m0 0H512V512H0" fill="#fff"></path><path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path><path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path><path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path><path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path></g></svg>
+                        Login with Google
+                    </button>
+
+                </li>
+                <li>
+
+                    <button class="btn bg-[#1A77F2] text-white border-[#005fd8]">
+                        <svg aria-label="Facebook logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="white" d="M8 12h5V8c0-6 4-7 11-6v5c-4 0-5 0-5 3v2h5l-1 6h-4v12h-6V18H8z"></path></svg>
+                        Login with Facebook
+                    </button>
+
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+
+</div>
+
+
+<dialog id="my_modal_4" class="modal">
+    <div class="modal-box w-11/12 max-w-2xl max-h-130">
+
+        <div class="hero bg-primary-content max-h-140">
+            <div class="hero-content flex-col lg:flex-row-reverse">
+                <div class="text-center lg:text-left">
+                    <h1 class="text-5xl font-bold">Login now!</h1>
+                    <p class="py-6">
+                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
+                        quasi. In deleniti eaque aut repudiandae et a id nisi.
+                    </p>
+                </div>
+                <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                    <div class="card-body">
+                        <fieldset class="fieldset">
+                            <label class="label">Email</label>
+                            <input type="email" class="input" placeholder="Email" />
+                            <label class="label">Password</label>
+                            <input type="password" class="input" placeholder="Password" />
+                            <div><a class="link link-hover">Forgot password?</a></div>
+                            <button class="btn btn-neutral mt-4">Login</button>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-action ">
+            <form method="dialog">
+                <!-- if there is a button, it will close the modal -->
+                <button class="btn ">Close</button>
+            </form>
+        </div>
+    </div>
+</dialog>
+@code {
+
+
+
+
+}
+
+
+
+
+
+<!-- <div class="indicator mt-5 ml-2">
+    <span class="indicator-item badge badge-secondary">12</span>
+    <button class="btn btn-neutral btn-outline text-neutral-content " style="color:rgb(24, 24, 36)">New Release</button>
+</div>-->
+<!--   <div class="nav-item px-3">
+       <NavLink class="nav-link " href="" Match="NavLinkMatch.All">
+           <span class="text-secondary " aria-hidden="true">Lorem ererr</span>
+       </NavLink>
+   </div>
+
+   <div class="nav-item px-3">
+       <NavLink class="nav-link" href="Menu">
+           <span class="text-secondary " aria-hidden="true">Lorem ererr</span>
+       </NavLink>
+   </div>
+
+   <div class="nav-item px-3">
+       <NavLink class="nav-link" href="weather">
+           <span class="text-secondary " aria-hidden="true">Lorem ererr</span>
+       </NavLink>
+   </div>-->
+<!--      <div >
+             <label class="text-xl font-semibold flex ml-4 	base-content  " style="margin-top:-1.9rem;">Genre</label>
+             <div class="mt-1">
+                 <select class="select select-md justify-self-start self-center flex sm:block lg:select select-md bg-base-300	" >
+                     <option disabled selected class="base-content" value="All">All Genre</option>
+                     <option class="base-content" value="All">All Genre </option>
+                     <option class="base-content bg-base-300" value="Dark Fantasy">Dark Fantasy</option>
+
+
+
+                 </select>
+                 <select class="select select-md justify-self-start self-center flex sm:block lg:select select-md mt-2 bg-base-300	">
+                     <option disabled selected class="bg-base-300 base-content">Fantasy</option>
+                     <option class="base-content bg-base-300">High/Epic Fantasy</option>
+                     <option class="base-content bg-base-300">Urban Fantasy</option>
+                     <option class="base-content bg-base-300">Dark Fantasy</option>
+                     <option class="base-content bg-base-300">Romantasy</option>
+                     <option class="base-content bg-base-300">Portal Fantasy</option>
+                     <option class="base-content bg-base-300">Mythic Fantasy</option>
+                     <option class="base-content bg-base-300">Sword & Sorcery</option>
+                     <option class="base-content bg-base-300">Historical Fantasy</option>
+                     <option class="base-content bg-base-300">Science Fantasy</option>
+                     <option class="base-content bg-base-300">Comedic Fantasy</option>
+                     <option class="base-content bg-base-300">Magical Realism</option>
+                     <option class="base-content bg-base-300">YA Fantasy</option>
+
+                 </select>
+                 <select class="select select-md justify-self-start self-center flex sm:block lg:select select-md mt-2 bg-base-300	">
+                     <option disabled selected class="base-content">Manga</option>
+                     <option class="base-content bg-base-300">Shonen</option>
+                     <option class="base-content bg-base-300">Shojo</option>
+                     <option class="base-content bg-base-300">Seinen</option>
+                     <option class="base-content bg-base-300">Josei</option>
+                     <option class="base-content bg-base-300">Isekai</option>
+                     <option class="base-content bg-base-300">Mecha</option>
+                     <option class="base-content bg-base-300">Slice-of-Life</option>
+                     <option class="base-content bg-base-300">Yaoi/BL</option>
+                     <option class="base-content bg-base-300">Yuri/GL</option>
+                     <option class="base-content bg-base-300">Harem</option>
+                     <option class="base-content bg-base-300">Sports</option>
+
+
+                 </select>
+                 <select class="select select-md justify-self-start self-center flex sm:block lg:select select-md mt-2 bg-base-300	">
+                     <option disabled selected class="base-content">Manhwa</option>
+                     <option class="base-content bg-base-300">Webtoon</option>
+                     <option class="base-content bg-base-300">Murim</option>
+                     <option class="base-content bg-base-300">Regression</option>
+                     <option class="base-content bg-base-300">Transmigration</option>
+                     <option class="base-content bg-base-300">Dungeon/System</option>
+                     <option class="base-content bg-base-300">Modern Romance</option>
+                     <option class="base-content bg-base-300">Historical Romance</option>
+                     <option class="base-content bg-base-300">Office Drama</option>
+                     <option class="base-content bg-base-300">BL</option>
+                     <option class="base-content bg-base-300">GL</option>
+                     <option class="base-content bg-base-300">Survival</option>
+
+
+
+                 </select>
+                 <select class="select select-md justify-self-start self-center flex sm:block lg:select select-md mt-2 bg-base-300	">
+                     <option disabled selected class="base-content">Suspense</option>
+                     <option class="base-content bg-base-300">Crime</option>
+                     <option class="base-content bg-base-300">Legal Thriller</option>
+                     <option class="base-content bg-base-300">Medical Thriller</option>
+                     <option class="base-content bg-base-300">Domestic Suspense</option>
+                     <option class="base-content bg-base-300">Noir</option>
+                     <option class="base-content bg-base-300">Action Suspense</option>
+                     <option class="base-content bg-base-300">Police Procedural</option>
+                     <option class="base-content bg-base-300">Conspiracy</option>
+                     <option class="base-content bg-base-300">Techno-Thriller</option>
+                     <option class="base-content bg-base-300">Heist</option>
+                     <option class="base-content bg-base-300">Psychological Thriller</option>
+
+                 </select>
+                 <select class="select select-md justify-self-start self-center flex sm:block lg:select select-md mt-2 bg-base-300	">
+                     <option class="base-content bg-base-300">Contemporary</option>
+                     <option class="base-content bg-base-300">Historical</option>
+                     <option class="base-content bg-base-300">Paranormal</option>
+                     <option class="base-content bg-base-300">Rom-Com</option>
+                     <option class="base-content bg-base-300">New Adult</option>
+                     <option class="base-content bg-base-300">Dark Romance</option>
+                     <option class="base-content bg-base-300">Sports Romance</option>
+                     <option class="base-content bg-base-300">Billionaire</option>
+                     <option class="base-content bg-base-300">LGBTQ+</option>
+                     <option class="base-content bg-base-300">Arranged Marriage</option>
+                     <option class="base-content bg-base-300">Second Chance</option>
+
+
+                 </select>
+             </div>
+         </div>-->

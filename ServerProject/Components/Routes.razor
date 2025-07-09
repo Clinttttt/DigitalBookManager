@@ -1,0 +1,26 @@
+﻿@using ServerProject.Components.Account.Shared
+<Router AppAssembly="typeof(Program).Assembly">
+    <Found Context="routeData">
+        <FocusOnNavigate RouteData="routeData" Selector="h1" />
+
+        @{
+            var RouteAdmin = routeData.PageType?.Namespace?.Contains("Admin") ?? false;
+            if (RouteAdmin)
+            {
+                <AuthorizeRouteView RouteData="routeData" DefaultLayout="typeof(AdminLayout)"></AuthorizeRouteView>
+            }
+            else
+            {
+                <AuthorizeRouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)">
+                    <NotAuthorized>
+                        <RedirectToLogin />
+                    </NotAuthorized>
+                </AuthorizeRouteView>
+            }
+
+        }
+
+
+       
+    </Found>
+</Router>

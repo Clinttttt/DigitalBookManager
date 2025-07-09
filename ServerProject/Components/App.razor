@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <link rel="stylesheet" href="/css/site.min.css" asp-append-version="true" />
+  
+  
+    <link rel="stylesheet" href="@Assets["ServerProject.styles.css"]" />
+    <link rel="stylesheet" href="@Assets["app.css"]" />
+    <ImportMap />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <HeadOutlet />
+</head>
+
+<body>
+    <component type="typeof(App)" render-mode="Server" />
+    <Routes />
+    <script src="_framework/blazor.web.js"></script>
+</body>
+
+</html>

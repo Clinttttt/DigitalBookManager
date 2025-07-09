@@ -1,0 +1,326 @@
+﻿@page "/AddProducts"
+@using Microsoft.AspNetCore.Components.Forms
+@using ServerProject.Models
+@rendermode InteractiveServer
+@inject NavigationManager navigation
+@inject ApplicationDbContext _db
+@using ServerProject.Data
+
+<div class="flex flex-row justify-between">
+    <h5 class="	base-content ml-3 mt-2 text-2xl font-semibold ">Product Information</h5>
+    <h5 class="	base-content mr-5 mt-2 text-2xl font-semibold italic">Product Overview</h5>
+
+</div>
+<div class="mt-4" style="border-bottom:solid  1px rgba(0,0,0,0.2); width:59.9rem;"></div>
+
+
+<EditForm Model="@Product_Initialize" OnValidSubmit="@HandleValidSubmit" >
+
+    <div class="   flex-col flex sm:flex-row flex md:flex-row flex lg:flex-row flex">
+        <fieldset class="fieldset bg-base-200 border-neutral ml-6 mt-6 h-122  rounded-box w-xs  border p-4" style="border:solid 1px rgba(0,0,0,0.2)">
+
+
+            <label class="label text-neutral">Book Title</label>
+            @*re*@
+            <input type="text" class="border-neutral input text-neutral" @bind="Product_Initialize.Title" @bind:event="oninput" placeholder="Write Book Title" style="border:solid 1px rgba(0,0,0,0.2)" />
+
+            <label class="label text-neutral">Authors</label>
+            <input type="text" class=" border-neutral input text-neutral" @bind="Product_Initialize.Authors" placeholder="Write The Authors" style="border:solid 1px rgba(0,0,0,0.2)" />
+
+            <label class="label text-neutral">Description</label>
+            <textarea class="border-neutral textarea h-24 text-neutral" @bind="Product_Initialize.Description" @bind:event="oninput" placeholder="A Little Information" style="border:solid 1px rgba(0,0,0,0.2)"></textarea>
+
+            <label class="label text-neutral">Price</label>
+            <input type="number" class=" border-neutral input text-neutral" @bind="Product_Initialize.Price" @bind:event="oninput" placeholder="my-awesome-page" style="border:solid 1px rgba(0,0,0,0.2)" />
+
+            <label class="label text-neutral">Languages</label>
+            <select class="select " @bind="Product_Initialize.Language" style="border:solid 1px rgba(0,0,0,0.2)">
+                <option value="">-- Select Language --</option>
+                <option value="English">English</option>
+                <option value="Filipino">Filipino</option>
+                <option value="Japanese">Japanese</option>
+                <option value="Korean">Korean</option>
+                <option value="Chinese">Chinese</option>
+                <option value="Spanish">Spanish</option>
+                <option value="French">French</option>
+                <option value="German">German</option>
+                <option value="Italian">Italian</option>
+                <option value="Russian">Russian</option>
+                <option value="Portuguese">Portuguese</option>
+                <option value="Arabic">Arabic</option>
+                <option value="Hindi">Hindi</option>
+                <option value="Bengali">Bengali</option>
+                <option value="Urdu">Urdu</option>
+                <option value="Vietnamese">Vietnamese</option>
+                <option value="Thai">Thai</option>
+            </select>
+
+            <select class="select mt-2" @bind="Product_Initialize.Status" style="border:solid 1px rgba(0,0,0,0.2)">
+                <option value="Active">Active</option>
+                <option value="In Active">In Active</option>
+                <option value="Comming Soon">Comming Soon</option>
+                <option value="Archived">Archived</option>
+            </select>
+        </fieldset>
+
+
+
+        <fieldset class="fieldset bg-base-200 border-neutral ml-6 mt-6 h-112 rounded-box w-xs  border p-4" style="border:solid 1px rgba(0,0,0,0.2)">
+            @*ewe*@
+            <label class="label text-neutral">Add Cover</label>
+            <InputFile type="file" class="file-input file-input-neutral" onchange="@HandleFileUpload" />
+
+            <label class="label text-neutral">Category</label>
+            <label class="select border-neutral  text-neutral" style="border:solid 1px rgba(0,0,0,0.2)">
+                <span class="label">Type</span>
+                <select @bind="Product_Initialize.Category" class=" border-neutral  text-neutral" style="border:solid 1px rgba(0,0,0,0.2)">
+                    <option>Romance</option>
+                    <option>Fantasy</option>
+                    <option>Manga</option>
+                    <option>Manwha</option>
+                    <option>Suspense</option>
+
+                </select>
+            </label>
+
+            <label class="label text-neutral">Genre</label>
+            <select class="select" @bind="Product_Initialize.Genre" style="border:solid 1px rgba(0,0,0,0.2)">
+                <option disabled selected>Select Genre</option>
+                <option class="base-content bg-base-300">High/Epic Fantasy</option>
+                <option class="base-content bg-base-300">Urban Fantasy</option>
+                <option class="base-content bg-base-300">Dark Fantasy</option>
+                <option class="base-content bg-base-300">Romantasy</option>
+                <option class="base-content bg-base-300">Portal Fantasy</option>
+                <option class="base-content bg-base-300">Mythic Fantasy</option>
+                <option class="base-content bg-base-300">Sword & Sorcery</option>
+                <option class="base-content bg-base-300">Historical Fantasy</option>
+                <option class="base-content bg-base-300">Science Fantasy</option>
+                <option class="base-content bg-base-300">Comedic Fantasy</option>
+                <option class="base-content bg-base-300">Magical Realism</option>
+                <option class="base-content bg-base-300">YA Fantasy</option>
+                <option class="base-content bg-base-300">Shonen</option>
+                <option class="base-content bg-base-300">Shojo</option>
+                <option class="base-content bg-base-300">Seinen</option>
+                <option class="base-content bg-base-300">Josei</option>
+                <option class="base-content bg-base-300">Isekai</option>
+                <option class="base-content bg-base-300">Mecha</option>
+                <option class="base-content bg-base-300">Slice-of-Life</option>
+                <option class="base-content bg-base-300">Yaoi/BL</option>
+                <option class="base-content bg-base-300">Yuri/GL</option>
+                <option class="base-content bg-base-300">Harem</option>
+                <option class="base-content bg-base-300">Sports</option>
+                <option class="base-content bg-base-300">Webtoon</option>
+                <option class="base-content bg-base-300">Murim</option>
+                <option class="base-content bg-base-300">Regression</option>
+                <option class="base-content bg-base-300">Transmigration</option>
+                <option class="base-content bg-base-300">Dungeon/System</option>
+                <option class="base-content bg-base-300">Modern Romance</option>
+                <option class="base-content bg-base-300">Historical Romance</option>
+                <option class="base-content bg-base-300">Office Drama</option>
+                <option class="base-content bg-base-300">BL</option>
+                <option class="base-content bg-base-300">GL</option>
+                <option class="base-content bg-base-300">Survival</option>
+                <option class="base-content bg-base-300">Psychological Thriller</option>
+                <option class="base-content bg-base-300">Crime</option>
+                <option class="base-content bg-base-300">Legal Thriller</option>
+                <option class="base-content bg-base-300">Medical Thriller</option>
+                <option class="base-content bg-base-300">Domestic Suspense</option>
+                <option class="base-content bg-base-300">Noir</option>
+                <option class="base-content bg-base-300">Action Suspense</option>
+                <option class="base-content bg-base-300">Police Procedural</option>
+                <option class="base-content bg-base-300">Conspiracy</option>
+                <option class="base-content bg-base-300">Techno-Thriller</option>
+                <option class="base-content bg-base-300">Heist</option>
+                <option class="base-content bg-base-300">Contemporary</option>
+                <option class="base-content bg-base-300">Historical</option>
+                <option class="base-content bg-base-300">Paranormal</option>
+                <option class="base-content bg-base-300">Rom-Com</option>
+                <option class="base-content bg-base-300">New Adult</option>
+                <option class="base-content bg-base-300">Dark Romance</option>
+                <option class="base-content bg-base-300">Sports Romance</option>
+                <option class="base-content bg-base-300">Billionaire</option>
+                <option class="base-content bg-base-300">LGBTQ+</option>
+                <option class="base-content bg-base-300">Arranged Marriage</option>
+                <option class="base-content bg-base-300">Second Chance</option>
+            </select>
+
+            <label class="label text-neutral">Tags</label>
+            <input type="text" placeholder="Write Tags" class="input" @bind="Product_Initialize.Tags" style="border:solid 1px rgba(0,0,0,0.2)" />
+
+            <label class="label text-neutral">Number of Stock</label>
+            <input type="number" placeholder="Type here" class="input" @bind="Product_Initialize.StockCount" style="border:solid 1px rgba(0,0,0,0.2)" />
+            @*save*@
+           
+           
+                <button type="submit" class="btn mt-3 btn-secondary">Save</button>
+            
+          
+
+
+        </fieldset>
+
+
+
+
+
+        <div class="border w-50 max-w-sm ml-9 mt-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+
+            @if (!string.IsNullOrEmpty(Product_Initialize.CoverImagePath))
+            {
+                <div class="relative rounded-t-lg overflow-hidden" style="padding-top: 140%;">
+                    <!-- 16:9 aspect ratio container -->
+                    <img class="absolute top-0 left-0 w-full h-full object-cover"
+                    @bind-src="Product_Initialize.CoverImagePath"
+                    @bind-src:event="oninput"
+                    alt=""
+                    onerror="this.onerror=null;this.src='path/to/fallback-image.jpg';" />
+                </div>
+            }
+
+            <div class="px-5 pb-5">
+                <a href="#">
+                    <h5 class="overflow-y-auto h-38 text-md font-light tracking-tight text-gray-900 dark:text-white wrap-anywhere"><span class="text-lg font-semibold text-secondary-content wrap-anywhere">@Product_Initialize.Title &nbsp;</span>@Product_Initialize.Description</h5>
+                </a>
+                <div class="flex items-center mt-2.5 mb-5">
+                    <div class="flex items-center space-x-1 rtl:space-x-reverse">
+                        <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                        </svg>
+                        <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                        </svg>
+                        <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                        </svg>
+                        <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                        </svg>
+                        <svg class="w-4 h-4 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                        </svg>
+                    </div>
+                    <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm dark:bg-blue-200 dark:text-blue-800 ms-3">5.0</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="text-md font-bold text-gray-900 dark:text-white">$@Product_Initialize.Price</span>
+                    <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus-ring-primary font-medium rounded-lg text-sm px-2 py-2.5  text-center dark:bg-primary dark:hover:bg-secondary-content dark:focus:ring-secondary-content">Add to cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</EditForm>
+
+@code {
+
+    private Product Product_Initialize = new Product();
+
+
+    public async Task HandleValidSubmit()
+    {
+        if (!string.IsNullOrEmpty(Product_Initialize.CoverImagePath))
+        {
+            _db.ProductInfos.Add(Product_Initialize);
+            await _db.SaveChangesAsync();
+            Product_Initialize = new Product();
+        }
+        
+    }
+
+
+
+
+
+    private async Task HandleFileUpload(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        // Convert the uploaded file to a base64 string
+        var base64 = await ConvertToBase64(file);
+        Product_Initialize.CoverImagePath = $"data:{file.ContentType};base64,{base64}";
+
+    }
+
+    private async Task<string> ConvertToBase64(IBrowserFile file)
+    {
+        using var stream = file.OpenReadStream();
+        using var memoryStream = new MemoryStream();
+        await stream.CopyToAsync(memoryStream);
+        return Convert.ToBase64String(memoryStream.ToArray());
+    }
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+@*@code{
+    private string? Displaydata { get; set; }
+    private string? title {get;set;}
+
+    public void Title(Product _Title)
+    {
+       this.title = _Title.Title;
+    }
+    public void displaydatas(string display)
+    {
+        Displaydata = display;
+    }
+    private void Savedata()
+    {
+        Displaydata = title;
+    }
+
+
+
+
+
+}*@
+
+
+@*<div class="mockup-browser border-base-300 border bg-base-200 w-full" style="border:0; border-radius:0">
+
+
+
+    <div class="mockup-browser-toolbar flex ">
+        <h5 class="text-semilight font-semibold text-base-content  italic ml-auto">Add Product</h5>
+
+    </div>
+    <div class="grid  bg-secondary border-t border-base-300 h-119" style="background-color:rgb(219, 219, 219)">
+
+
+
+
+    </div>
+</div>*@
+
+
+
+
+
+
+@*   <div class=" ml-5 mt-4  rounded-lg w-120 h-90 bg-base-100" style="border:solid 1px rgba(0,0,0,0.2)">
+
+
+
+            <!--<div class="tooltip  tooltip-open tooltip-right" data-tip="Create New Book">
+
+                        <svg class="w-[144px] h-[144px] text-primary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M9 6c0-1.65685 1.3431-3 3-3s3 1.34315 3 3-1.3431 3-3 3-3-1.34315-3-3Zm2 3.62992c-.1263-.04413-.25-.08799-.3721-.13131-1.33928-.47482-2.49256-.88372-4.77995-.8482C4.84875 8.66593 4 9.46413 4 10.5v7.2884c0 1.0878.91948 1.8747 1.92888 1.8616 1.283-.0168 2.04625.1322 2.79671.3587.29285.0883.57733.1863.90372.2987l.00249.0008c.11983.0413.24534.0845.379.1299.2989.1015.6242.2088.9892.3185V9.62992Zm2-.00374V20.7551c.5531-.1678 1.0379-.3374 1.4545-.4832.2956-.1034.5575-.1951.7846-.2653.7257-.2245 1.4655-.3734 2.7479-.3566.5019.0065.9806-.1791 1.3407-.4788.3618-.3011.6723-.781.6723-1.3828V10.5c0-.58114-.2923-1.05022-.6377-1.3503-.3441-.29904-.8047-.49168-1.2944-.49929-2.2667-.0352-3.386.36906-4.6847.83812-.1256.04539-.253.09138-.3832.13765Z" />
+                        </svg>
+
+                </div>-->
+       </div>
+
+*@
+
+

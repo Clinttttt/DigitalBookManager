@@ -1,0 +1,42 @@
+﻿@page "/ManwhaPage"
+@inject NavigationManager navigation
+@using ServerProject.Services
+@using Models
+@inject IProductService ProductService
+
+
+
+
+
+<div class="flex flex-row justify-between mt-2">
+    <h5 class="text-2xl base-200 font-semibold italic ml-4">All Manwha </h5>
+    <h5 class="text-lg base-200 font-semibold italic mr-4">Explore Manwha Worlds! </h5>
+
+</div>
+<div class="justify-center flex mt-2">
+    <div style="border:solid 1px rgba(0,0,0,0.2); width:65rem;"></div>
+</div>
+<div class="flex-col flex flex-wrap sm:flex-wrap lg:flex flex-row gap-9 mb-3 justify-center  items-center flex-wrap min-h-screen">
+    @if (products != null)
+    {
+        @foreach (var product in products)
+        {
+            if (product.Category == "Manwha")
+            {
+                <ProductCard Item="product" />
+            }
+        }
+    }
+</div>
+
+
+
+@code {
+
+    private List<Product> products;
+    protected override async Task OnInitializedAsync()
+    {
+        products = await ProductService.GetAllProduct();
+    }
+}
+

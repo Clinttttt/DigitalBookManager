@@ -1,0 +1,104 @@
+﻿@page "/ProductOverview/{ProductId:int}"
+@inject NavigationManager navigation
+@using ServerProject.Services
+@inject IProductService ProductService
+@inject ICartService CartService
+@using Models
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+
+
+
+<div class="mockup-browser border-base-300 border bg-base-100 w-full" style="border:0; border-radius:0">
+    <div class="mockup-browser-toolbar flex ">
+        <h5 class="text-semilight font-semibold text-base-content  italic ml-auto">Product Details</h5>
+    </div>
+    @if (product != null)
+    {
+        <div class="grid  bg-base-200 border-t border-base-300 h-121 ">
+            <div class=" flex" style="margin-top:-3.4rem; ">
+                <div class="hero  min-h-screen ">
+                    <div class="hero-content flex-col lg:flex-row">
+                        <img src="@product.CoverImagePath"
+                             class="max-w-xs rounded-lg shadow-2xl w-66 h-106 object-cover border" />
+                        <div style="margin-top:-1rem;">
+                            <h1 class="text-4xl  text-primary italic font-bold">@product.Title</h1>
+                            <div class="rating mt-1">
+                                <div class="mask mask-star" aria-label="1 star"></div>
+                                <div class="mask mask-star" aria-label="2 star"></div>
+                                <div class="mask mask-star" aria-label="3 star" aria-current="true"></div>
+                                <div class="mask mask-star" aria-label="4 star"></div>
+                                <div class="mask mask-star" aria-label="5 star"></div>
+                            </div>
+                            <h5 class="text-secondary mt-1">Author:&nbsp;@product.Authors</h5>
+                            <h1 class="text-base-content mt-1 text-lg">@product.Tags</h1>
+                            <h1 class="text-3xl text-primary font-semibold mt-1">$@product.Price.ToString("0.00")</h1>
+                            <div class="flex flex-row mt-4 gap-4">
+                                <button class="btn btn-warning" type="button" @onclick="AddToCarts">Add To Cart</button>
+                                <button class="btn btn-secondary" onclick="my_modal_4.showModal()">Purchase</button>
+
+
+
+
+
+                            </div>
+                            @*     @if (showAdded)
+                            {
+                                <div class="alert alert-success mt-2">Added to cart!</div>
+                            }*@
+                            <p class="py-4">@product.Description</p>
+                            <h1 class="text-base-content mt-1 text-md">Genre:&nbsp;@product.Genre</h1>
+                            <h1 class="text-base-content mt-1 text-md">Language:&nbsp;@product.Language</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>
+
+
+
+
+
+@code {
+
+    private Product? product;
+    private bool showAdded = false;
+    private System.Threading.Timer? _timer;
+
+    [Parameter]
+    public int ProductId { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+
+        product = await ProductService.GetProduct(ProductId);
+
+
+
+    }
+
+
+    private async Task AddToCarts()
+    {
+        if (product != null)
+        {
+            await CartService.AddToCart(product);
+            showAdded = true;
+            _timer?.Dispose();
+            _timer = new System.Threading.Timer(_ =>
+            {
+                showAdded = false;
+                InvokeAsync(StateHasChanged);
+            }, null, 1500, System.Threading.Timeout.Infinite);
+        }
+    }
+
+    public void Dispose()
+    {
+        _timer?.Dispose();
+    }
+}
