@@ -1,7 +1,7 @@
 /public/* linguist-detectable=false
 /wwwroot/* linguist-detectable=false
 /client/* linguist-detectable=false
-*.cshtml linguist-detectable=false
+*.html linguist-detectable=false
 *.css linguist-detectable=false
 *.js linguist-detectable=false
 
