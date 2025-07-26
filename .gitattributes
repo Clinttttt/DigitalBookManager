@@ -1,8 +1,10 @@
+/public/* linguist-detectable=false
+/wwwroot/* linguist-detectable=false
+/client/* linguist-detectable=false
 *.html linguist-detectable=false
 *.css linguist-detectable=false
 *.js linguist-detectable=false
-*.json linguist-detectable=false
-*.svg linguist-detectable=false
+
 
 ###############################################################################
 # Set default behavior to automatically normalize line endings.
